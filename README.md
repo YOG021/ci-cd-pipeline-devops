@@ -8,7 +8,7 @@ This project demonstrates a complete DevOps CI/CD pipeline that automatically bu
 
 CI/CD Workflow
 
-✅ Steps Automated:
+ Steps Automated:
 Code pushed to GitHub
 GitHub Actions triggers pipeline
 Install dependencies & build app
@@ -19,7 +19,7 @@ Pull latest Docker image
 Run container and deploy app
 
 
-🚀 Step-by-Step CI/CD Process (Explanation)
+Step-by-Step CI/CD Process (Explanation)
 
 Step 1: Code Development
 
