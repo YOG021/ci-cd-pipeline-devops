@@ -24,40 +24,7 @@ Push image to Docker Hub
 SSH into AWS EC2
 Pull latest Docker image
 Run container and deploy app
-🏗️ Architecture Diagram
-        ┌──────────────┐
-        │  Developer   │
-        │  (Git Push)  │
-        └──────┬───────┘
-               │
-               ▼
-     ┌───────────────────┐
-     │   GitHub Repo     │
-     └──────┬────────────┘
-            │
-            ▼
- ┌───────────────────────┐
- │   GitHub Actions CI   │
- │  - Build Node App     │
- │  - Docker Build       │
- │  - Push to DockerHub  │
- └─────────┬─────────────┘
-           │
-           ▼
-   ┌───────────────────┐
-   │   Docker Hub      │
-   │  (Image Storage)  │
-   └─────────┬─────────┘
-             │
-             ▼
-   ┌───────────────────┐
-   │   AWS EC2 Server  │
-   │ - Pull Image      │
-   │ - Run Container   │
-   └─────────┬─────────┘
-             │
-             ▼
-     🌐 Live Application
+
 🐳 Docker Commands Used
 docker build -t cicd-app .
 docker tag cicd-app username/cicd-app:latest
@@ -72,31 +39,7 @@ docker pull username/cicd-app:latest
 # Run container
 docker run -d -p 3000:3000 username/cicd-app:latest
 🔥 GitHub Actions Workflow (CI/CD)
-name: CI/CD Pipeline
 
-on:
-  push:
-    branches: [ "main" ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Login to DockerHub
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-
-    - name: Build Docker image
-      run: docker build -t cicd-app .
-
-    - name: Tag & Push
-      run: |
-        docker tag cicd-app username/cicd-app:latest
-        docker push username/cicd-app:latest
-🌟 Features
 Fully automated CI/CD pipeline
 Dockerized Node.js app
 Cloud deployment on AWS EC2
